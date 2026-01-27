@@ -46,7 +46,8 @@ export function exportAsMarkdown(plan: MediaPlan, campaignName: string = 'Campai
 
     markdown += `\n## Targeting Tactics\n\n`;
     plan.tactics.forEach(tactic => {
-        markdown += `- ${tactic}\n`;
+        const tacticName = typeof tactic === 'string' ? tactic : tactic.name;
+        markdown += `- ${tacticName}\n`;
     });
 
     markdown += `\n## Budget Allocation\n\n`;
@@ -146,7 +147,8 @@ export function exportAsPDF(plan: MediaPlan, campaignName: string = 'Campaign') 
 
     doc.setFontSize(11);
     plan.tactics.forEach(tactic => {
-        doc.text(`• ${tactic}`, 20, yPos);
+        const tacticName = typeof tactic === 'string' ? tactic : tactic.name;
+        doc.text(`• ${tacticName}`, 20, yPos);
         yPos += 7;
     });
 

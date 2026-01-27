@@ -3,7 +3,7 @@
 import { CampaignInput } from './types';
 
 export function generateMediaPlanPrompt(input: CampaignInput): string {
-    return `You are an expert media strategist. Generate a comprehensive programmatic advertising media plan based on the following campaign goal:
+  return `You are an expert media strategist. Generate a comprehensive programmatic advertising media plan based on the following campaign goal:
 
 Campaign Goal: ${input.prompt}
 ${input.budget ? `Budget: $${input.budget}` : ''}
@@ -13,49 +13,69 @@ ${input.industry ? `Industry: ${input.industry}` : ''}
 
 Create a detailed media plan with the following structure:
 
-1. **Funnel Strategy**: Break down the campaign into 3 stages (Awareness, Consideration, Conversion)
+1. **Strategic Architecture Rationale**: Provide a high-level master rationale for why this specific plan was chosen (2-3 sentences).
+
+2. **Funnel Strategy**: Break down the campaign into 3 stages (Awareness, Consideration, Conversion)
    - For each stage, define relevant KPIs
    - Allocate budget percentage (should total 100%)
+   - Provide a 1-sentence strategic rationale for each stage.
 
-2. **Audience Segments**: Identify 2-4 high-potential audience groups
-   - Include demographic and behavioral targeting details
-   - Explain why each segment matters
+3. **Audience Segments**: Identify 2-3 high-potential audience groups
+   - Include specific targeting details (interests, behaviors, demographics)
+   - Explain why each segment matters to THIS specific brief.
+   - For each segment, provide demographic details (age, income, etc.) and behavioral profiles.
+   - For each segment, provide a representative latitude (lat) and longitude (lng) coordinate that falls within the ${input.location || 'requested target region'}. If no specific location is provided, use logic based on the prompt's context. Always generate realistic, non-zero coordinates.
 
-3. **Ad Formats**: Recommend optimal creative types for each funnel stage
-   - Match formats to audience behavior and funnel position
+4. **Ad Formats**: Recommend optimal creative types for each funnel stage
+   - Awareness: High-impact / Branding formats
+   - Consideration: Engagement / Mid-funnel formats
+   - Conversion: Performance / Action-oriented formats
 
-4. **Targeting Tactics**: Suggest 3-5 tactics from: geo-fencing, contextual targeting, day-parting, retargeting, lookalikes
+5. **Targeting Tactics**: Suggest precisely 3 tactics from the following list: Precision Geo-Fencing, Dynamic Contextual Intelligence, Strategic Day-Parting.
+   - For each, provide a tailored description for this campaign.
+   - Include a 'metric_label' (e.g., "Min. Accuracy", "Page Relevance") and a 'metric_value' (number from 0-100).
 
-5. **Budget Allocation**: Distribute the total budget across funnel stages
+6. **Budget Allocation**: Distribute the total budget across funnel stages based on the objective.
 
 Return your response as a JSON object with this exact structure:
 {
+  "masterRationale": "Master strategic logic...",
   "funnel": [
-    { "stage": "Awareness", "kpis": ["Impressions", "Reach"], "budget_pct": 40 },
-    { "stage": "Consideration", "kpis": ["CTR", "Engagement"], "budget_pct": 30 },
-    { "stage": "Conversion", "kpis": ["CPA", "ROAS"], "budget_pct": 30 }
+    { "stage": "Awareness", "kpis": ["Reach", "Impact"], "budget_pct": 40, "rationale": "Strategic logic for awareness stage..." },
+    { "stage": "Consideration", "kpis": ["CTR"], "budget_pct": 30, "rationale": "Strategic logic for consideration stage..." },
+    { "stage": "Conversion", "kpis": ["ROAS"], "budget_pct": 30, "rationale": "Strategic logic for conversion stage..." }
   ],
   "audiences": [
-    { "name": "Segment Name", "targeting": ["demographic", "behavior"], "description": "Why this segment matters" }
+    { 
+      "name": "Segment Name", 
+      "targeting": ["Detail 1", "Detail 2"], 
+      "description": "Specific relevance to brief",
+      "demographics": "Age 25-45, Urban dwellers...",
+      "behaviors": "Frequent travelers, Tech enthusiasts...",
+      "lat": 34.0522,
+      "lng": -118.2437
+    }
   ],
   "formats": {
-    "Awareness": ["Video", "High-impact Display"],
-    "Consideration": ["Carousel", "Native"],
-    "Conversion": ["Retargeting Display", "Search"]
+    "Awareness": ["Video", "CTV"],
+    "Consideration": ["Native", "Interstitials"],
+    "Conversion": ["Display", "Search"]
   },
-  "tactics": ["Geo-fencing", "Contextual Targeting", "Day-parting"],
+  "tactics": [
+    { "name": "Precision Geo-Fencing", "description": "Tailored logic...", "metric_label": "Min. Accuracy", "metric_value": 98 }
+  ],
   "budget_split": {
-    "Awareness": 1200,
-    "Consideration": 900,
-    "Conversion": 900
+    "Awareness": 400,
+    "Consideration": 300,
+    "Conversion": 300
   }
 }
 
-Be specific and actionable. Use real marketing insights.`;
+Be specific and actionable. Use real marketing insights tailored ONLY to the user prompt. DO NOT use generic placeholders.`;
 }
 
 export function refineMediaPlanPrompt(currentPlan: string, refinement: string): string {
-    return `You are an expert media strategist. Here is the current media plan:
+  return `You are an expert media strategist. Here is the current media plan:
 
 ${currentPlan}
 

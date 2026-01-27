@@ -8,24 +8,35 @@ const mediaPlanSchema = z.object({
     funnel: z.array(z.object({
         stage: z.string(),
         kpis: z.array(z.string()),
-        budget_pct: z.number()
+        budget_pct: z.number(),
+        rationale: z.string()
     })),
     audiences: z.array(z.object({
         name: z.string(),
         targeting: z.array(z.string()),
-        description: z.string()
+        description: z.string(),
+        demographics: z.string(),
+        behaviors: z.string(),
+        lat: z.number(),
+        lng: z.number()
     })),
     formats: z.object({
         Awareness: z.array(z.string()),
         Consideration: z.array(z.string()),
         Conversion: z.array(z.string())
     }),
-    tactics: z.array(z.string()),
+    tactics: z.array(z.object({
+        name: z.string(),
+        description: z.string(),
+        metric_label: z.string(),
+        metric_value: z.number()
+    })),
     budget_split: z.object({
         Awareness: z.number(),
         Consideration: z.number(),
         Conversion: z.number()
-    })
+    }),
+    masterRationale: z.string()
 });
 
 export async function POST(req: Request) {

@@ -6,34 +6,53 @@ import { useAppStore } from '@/lib/store';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 
+import { motion } from 'framer-motion';
+
 export default function Home() {
   const { error } = useAppStore();
 
   return (
     <div className="container mx-auto p-8 max-w-7xl">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-          Welcome to OmniMind Campaign Architect
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-12"
+      >
+        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4 tracking-tight">
+          OmniMind Campaign Architect
         </h1>
-        <p className="text-lg text-muted-foreground">
-          Transform your business goals into executable programmatic advertising blueprints
+        <p className="text-xl text-slate-500 font-light max-w-2xl leading-relaxed">
+          The industry's most advanced programmatic blueprint engine. Orchestrate precision-targeted campaigns with AI-driven strategy.
         </p>
-      </div>
+      </motion.div>
 
       {error && (
-        <Alert variant="destructive" className="mb-6">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          <Alert variant="destructive" className="mb-8 border-red-500/20 bg-red-500/5 text-red-400">
+            <AlertCircle className="h-5 w-5" />
+            <AlertDescription className="text-base font-medium">{error}</AlertDescription>
+          </Alert>
+        </motion.div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-1">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
           <CampaignInput />
-        </div>
-        <div className="lg:col-span-2">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
           <MediaPlanOutput />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

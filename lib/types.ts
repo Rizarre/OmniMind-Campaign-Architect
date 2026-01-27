@@ -5,6 +5,7 @@ export interface FunnelStage {
     kpis: string[];
     budget_pct: number;
     budget_amount?: number;
+    rationale?: string;
 }
 
 export interface Audience {
@@ -12,6 +13,10 @@ export interface Audience {
     targeting: string[];
     description?: string;
     estimatedReach?: number;
+    demographics: string;
+    behaviors: string;
+    lat: number;
+    lng: number;
 }
 
 export interface AdFormats {
@@ -22,13 +27,22 @@ export interface BudgetSplit {
     [key: string]: number;
 }
 
+export interface Tactic {
+    name: string;
+    description: string;
+    metric_label: string;
+    metric_value: number;
+}
+
 export interface MediaPlan {
     funnel: FunnelStage[];
     audiences: Audience[];
     formats: AdFormats;
-    tactics: string[];
+    tactics: Tactic[];
     budget_split: BudgetSplit;
     totalBudget?: number;
+    duration?: number;
+    masterRationale?: string;
 }
 
 export interface CampaignInput {
