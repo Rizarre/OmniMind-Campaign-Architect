@@ -206,7 +206,7 @@ export function CampaignInput() {
     };
 
     return (
-        <Card className="p-12 bg-[#151725] text-slate-200 border border-slate-800 shadow-2xl rounded-[2.5rem] relative overflow-hidden group min-h-[660px]">
+        <Card className="p-12 text-slate-200 border-white/5 shadow-2xl rounded-[2.5rem] relative overflow-hidden group min-h-[660px]">
             {/* Background enhancement */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/5 blur-[100px] rounded-full pointer-events-none group-hover:bg-purple-600/10 transition-colors duration-1000" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/5 blur-[100px] rounded-full pointer-events-none group-hover:bg-blue-600/10 transition-colors duration-1000" />
@@ -222,7 +222,7 @@ export function CampaignInput() {
                             <h2 className="text-2xl font-bold tracking-tight text-white leading-tight">
                                 Campaign Brief
                             </h2>
-                            <p className="text-sm text-slate-500 font-medium tracking-wide">PHASE 01: ARCHITECTURAL INTENT</p>
+                            <p className="text-xs text-slate-400 font-black tracking-[0.2em] uppercase">PHASE 01: ARCHITECTURAL INTENT</p>
                         </div>
                     </div>
 
@@ -230,7 +230,7 @@ export function CampaignInput() {
                         <Textarea
                             value={prompt}
                             onChange={(e) => handlePromptChange(e.target.value)}
-                            className="min-h-[240px] bg-[#0F111A] border-slate-700/50 text-slate-100 placeholder:text-slate-700 resize-none text-lg p-8 rounded-[2rem] focus:border-blue-500/30 focus:ring-0 transition-all font-light leading-relaxed shadow-inner block w-full"
+                            className="min-h-[240px] bg-black/20 border-white/5 text-slate-100 placeholder:text-slate-700 resize-none text-lg p-8 rounded-[2rem] focus:border-blue-500/30 focus:ring-0 transition-all font-light leading-relaxed shadow-inner block w-full backdrop-blur-md"
                             placeholder="Describe your campaign goal, target audience, and key objectives..."
                         />
 
@@ -239,10 +239,10 @@ export function CampaignInput() {
                                 <motion.div
                                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    className="mb-2 w-72 bg-[#1E202E] border border-blue-500/30 rounded-2xl p-4 shadow-2xl backdrop-blur-xl z-50"
+                                    className="mb-2 w-72 bg-black/60 border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-[40px] z-50"
                                 >
                                     <div className="flex items-center justify-between mb-3">
-                                        <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Live Signals</span>
+                                        <span className="text-xs font-black text-blue-400 uppercase tracking-widest">Live Signals</span>
                                         <button onClick={() => setShowSuggestions(false)} className="text-slate-500 hover:text-white transition-colors">
                                             <Zap className="h-3 w-3" />
                                         </button>
@@ -259,7 +259,7 @@ export function CampaignInput() {
                                                 <div
                                                     key={i}
                                                     onClick={() => adoptSuggestion(trend)}
-                                                    className="p-2.5 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-blue-500/50 cursor-pointer transition-all group/item"
+                                                    className="p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/50 cursor-pointer transition-all group/item"
                                                 >
                                                     <div className="flex items-center justify-between">
                                                         <span className="text-xs text-slate-300 group-hover/item:text-blue-200 transition-colors uppercase tracking-tight">{trend}</span>
@@ -288,7 +288,7 @@ export function CampaignInput() {
                             <button
                                 key={i}
                                 onClick={() => handlePromptChange(preset)}
-                                className="text-[11px] bg-[#1E202E]/60 hover:bg-slate-700 text-slate-500 hover:text-blue-200 px-4 py-2 rounded-xl transition-all border border-slate-800 hover:border-blue-500/30 truncate max-w-[200px] text-left shadow-sm font-medium"
+                                className="text-xs bg-white/5 hover:bg-white/10 text-slate-400 hover:text-blue-200 px-4 py-2 rounded-xl transition-all border border-white/5 hover:border-blue-500/30 truncate max-w-[200px] text-left shadow-sm font-medium backdrop-blur-md"
                                 title={preset}
                             >
                                 {preset}
@@ -322,14 +322,14 @@ export function CampaignInput() {
                 {/* Section 3: Parameters */}
                 <div className="space-y-8 pt-6 border-t border-slate-800/50">
                     <div className="flex items-center gap-2 mb-2">
-                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">Campaign Parameters</span>
+                        <span className="text-xs font-black text-slate-400 uppercase tracking-[0.3em]">Campaign Parameters</span>
                         <div className="flex-1 h-px bg-slate-800/50" />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="space-y-6">
                             <div className="flex justify-between items-center text-sm font-medium">
-                                <div className="flex items-center gap-2 text-slate-500">
+                                <div className="flex items-center gap-2 text-slate-400">
                                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
                                     Investment
                                 </div>
@@ -349,7 +349,7 @@ export function CampaignInput() {
 
                         <div className="space-y-6">
                             <div className="flex justify-between items-center text-sm font-medium">
-                                <div className="flex items-center gap-2 text-slate-500">
+                                <div className="flex items-center gap-2 text-slate-400">
                                     <div className="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
                                     Timeframe
                                 </div>
@@ -373,25 +373,25 @@ export function CampaignInput() {
                 {/* Section 4: Projections */}
                 <div className="space-y-6 pt-2">
                     <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">Calculated Impact</span>
+                        <span className="text-xs font-black text-slate-400 uppercase tracking-[0.3em]">Calculated Impact</span>
                         <div className="flex-1 h-px bg-slate-800/50" />
                     </div>
 
                     <div className="grid grid-cols-3 gap-6">
-                        <div className="bg-[#0F111A] p-5 rounded-[1.5rem] border border-slate-800/50 text-center group/stat hover:border-slate-700 transition-all hover:translate-y-[-2px]">
-                            <div className="text-[9px] text-slate-600 uppercase tracking-widest mb-3 font-black group-hover/stat:text-slate-400 transition-colors">Potential Reach</div>
+                        <div className="bg-black/20 backdrop-blur-md p-5 rounded-[1.5rem] border border-white/5 text-center group/stat hover:border-white/10 transition-all hover:translate-y-[-2px]">
+                            <div className="text-xs text-slate-400 uppercase tracking-widest mb-3 font-black group-hover/stat:text-slate-300 transition-colors">Potential Reach</div>
                             <div className="text-2xl font-bold text-slate-300 tracking-tighter">
                                 {Math.floor(budget[0] * 32 * (1 + duration[0] / 200)).toLocaleString()}
                             </div>
                         </div>
-                        <div className="bg-[#0F111A] p-5 rounded-[1.5rem] border border-slate-800/50 text-center group/stat hover:border-blue-500/20 transition-all hover:translate-y-[-2px]">
-                            <div className="text-[9px] text-slate-600 uppercase tracking-widest mb-3 font-black group-hover/stat:text-blue-400 transition-colors">Visual Impressions</div>
+                        <div className="bg-black/20 backdrop-blur-md p-5 rounded-[1.5rem] border border-white/5 text-center group/stat hover:border-blue-500/20 transition-all hover:translate-y-[-2px]">
+                            <div className="text-xs text-slate-400 uppercase tracking-widest mb-3 font-black group-hover/stat:text-blue-300 transition-colors">Visual Impressions</div>
                             <div className="text-2xl font-bold text-blue-400 tracking-tighter">
                                 {Math.floor(budget[0] * 125 * (1 + duration[0] / 500)).toLocaleString()}
                             </div>
                         </div>
-                        <div className="bg-[#0F111A] p-5 rounded-[1.5rem] border border-slate-800/50 text-center group/stat hover:border-purple-500/20 transition-all hover:translate-y-[-2px]">
-                            <div className="text-[9px] text-slate-600 uppercase tracking-widest mb-3 font-black group-hover/stat:text-purple-400 transition-colors">Traffic Clicks</div>
+                        <div className="bg-black/20 backdrop-blur-md p-5 rounded-[1.5rem] border border-white/5 text-center group/stat hover:border-purple-500/20 transition-all hover:translate-y-[-2px]">
+                            <div className="text-xs text-slate-400 uppercase tracking-widest mb-3 font-black group-hover/stat:text-purple-300 transition-colors">Traffic Clicks</div>
                             <div className="text-2xl font-bold text-purple-400 tracking-tighter">
                                 {Math.floor((budget[0] / 3.5) * (1 + duration[0] / 300)).toLocaleString()}
                             </div>

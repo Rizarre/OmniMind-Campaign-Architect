@@ -3,6 +3,7 @@
 import { useAppStore } from '@/lib/store';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Users, MapPin, Target, Sparkles, Navigation, Info, ZoomIn } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useMemo } from 'react';
@@ -44,28 +45,28 @@ export default function AudienceSegmentsPage() {
 
     if (!currentPlan) {
         return (
-            <div className="container mx-auto p-12 max-w-5xl min-h-screen flex items-center justify-center">
-                <Card className="p-16 bg-[#151725] border-slate-800 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
+            <div className="container mx-auto p-12 max-w-5xl min-h-screen flex items-center justify-center relative z-10">
+                <Card className="p-16 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/5 blur-[100px] rounded-full pointer-events-none" />
                     <Users className="h-24 w-24 mx-auto mb-8 text-slate-700 animate-pulse" />
                     <h2 className="text-3xl font-bold text-white mb-4 italic">Architectural Analysis Pending</h2>
                     <p className="text-slate-500 mb-10 max-w-md mx-auto leading-relaxed">
                         Audience segment mapping and demographic profiling are generated during the blueprint phase. Please initialize a campaign brief to begin.
                     </p>
-                    <button
+                    <Button
                         onClick={() => window.location.href = '/'}
-                        className="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-2xl transition-all shadow-xl shadow-purple-500/20 active:scale-95"
+                        className="px-10 py-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-black rounded-2xl transition-all shadow-xl shadow-purple-500/20 uppercase tracking-widest text-xs"
                     >
-                        Return to Dashboard
-                    </button>
+                        Initialize Dashboard
+                    </Button>
                 </Card>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-[#0F111A] text-slate-200">
-            <div className="container mx-auto p-8 max-w-7xl space-y-12 animate-in fade-in duration-700">
+        <div className="min-h-screen bg-transparent text-slate-200 relative z-10">
+            <div className="container mx-auto p-8 max-w-7xl space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div className="space-y-4">
@@ -86,9 +87,9 @@ export default function AudienceSegmentsPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Interactive Map */}
                     <div className="lg:col-span-7 space-y-6">
-                        <Card className="bg-[#151725] border-slate-800 rounded-[2.5rem] overflow-hidden relative shadow-2xl aspect-[16/10]">
+                        <Card className="rounded-[2.5rem] overflow-hidden relative shadow-2xl aspect-[16/10] border-white/5">
                             {/* Simulated High-End Map Background */}
-                            <div className="absolute inset-0 bg-[#0F111A]">
+                            <div className="absolute inset-0 bg-black/40">
                                 <div className="absolute inset-0 opacity-20 pointer-events-none"
                                     style={{
                                         backgroundImage: `radial-gradient(#242735 1px, transparent 1px)`,
@@ -129,7 +130,7 @@ export default function AudienceSegmentsPage() {
 
                                             {/* Label peek */}
                                             <div className="absolute top-0 left-full ml-4 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-2xl">
-                                                <span className="text-[10px] font-bold text-white uppercase tracking-widest">{aud.name}</span>
+                                                <span className="text-xs font-bold text-white uppercase tracking-widest">{aud.name}</span>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -137,8 +138,8 @@ export default function AudienceSegmentsPage() {
                             </div>
 
                             {/* Map UI Elements */}
-                            <div className="absolute top-6 left-6 p-4 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-700/50 space-y-2 z-30">
-                                <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Active Footprint</div>
+                            <div className="absolute top-6 left-6 p-4 bg-black/40 backdrop-blur-xl rounded-2xl border border-white/10 space-y-2 z-30">
+                                <div className="text-xs font-black text-slate-400 uppercase tracking-widest">Active Footprint</div>
                                 <div className="text-sm font-bold text-white flex items-center gap-2">
                                     <MapPin className="h-3 w-3 text-blue-400" />
                                     {currentPlan.geographicScope || 'Target Region'}
@@ -146,9 +147,9 @@ export default function AudienceSegmentsPage() {
                             </div>
 
                             <div className="absolute bottom-6 right-6 flex gap-2 z-30">
-                                <Badge className="bg-slate-900/80 hover:bg-slate-800 border-slate-700 px-4 py-2 cursor-pointer gap-2">
+                                <Badge className="bg-black/60 hover:bg-black/80 border-white/10 px-4 py-2 cursor-pointer gap-2 backdrop-blur-md">
                                     <ZoomIn className="h-3.5 w-3.5 text-slate-400" />
-                                    <span className="text-[10px] uppercase font-bold tracking-widest">Recalibrate View</span>
+                                    <span className="text-xs uppercase font-bold tracking-widest">Recalibrate View</span>
                                 </Badge>
                             </div>
                         </Card>
@@ -159,7 +160,7 @@ export default function AudienceSegmentsPage() {
                                 <Sparkles className="h-6 w-6 text-blue-400" />
                             </div>
                             <div className="space-y-1">
-                                <h4 className="text-sm font-bold text-white uppercase tracking-wide">Geospatial Intelligence</h4>
+                                <h4 className="text-sm font-bold text-white uppercase tracking-wider">Geospatial Intelligence</h4>
                                 <p className="text-xs text-slate-400 leading-relaxed font-light">
                                     Markers represent high-density behavioral clusters identified through programmatic attribution data and location signals.
                                 </p>
@@ -170,7 +171,7 @@ export default function AudienceSegmentsPage() {
                     {/* Right: Detailed list/selection */}
                     <div className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-2 mb-2">
-                            <span className="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">Segment Architecture</span>
+                            <span className="text-xs font-black text-slate-400 uppercase tracking-[0.3em]">Segment Architecture</span>
                             <div className="flex-1 h-px bg-slate-800/50" />
                         </div>
 
@@ -181,10 +182,10 @@ export default function AudienceSegmentsPage() {
                                     layout
                                     initial={false}
                                     animate={{
-                                        borderColor: selectedId === aud.id ? 'rgba(59, 130, 246, 0.4)' : 'rgba(51, 65, 85, 0.3)',
-                                        backgroundColor: selectedId === aud.id ? 'rgba(30, 41, 59, 0.4)' : 'rgba(21, 23, 37, 1)'
+                                        borderColor: selectedId === aud.id ? 'rgba(59, 130, 246, 0.5)' : 'rgba(255, 255, 255, 0.05)',
+                                        backgroundColor: selectedId === aud.id ? 'rgba(59, 130, 246, 0.05)' : 'rgba(255, 255, 255, 0.02)'
                                     }}
-                                    className="p-6 rounded-[2rem] border transition-all cursor-pointer group"
+                                    className="p-8 md:p-10 rounded-[2.5rem] border transition-all cursor-pointer group backdrop-blur-md"
                                     onClick={() => setSelectedId(selectedId === aud.id ? null : aud.id)}
                                 >
                                     <div className="flex justify-between items-start mb-4">
@@ -199,7 +200,7 @@ export default function AudienceSegmentsPage() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <Badge variant="outline" className="border-slate-800 text-slate-500 text-[10px]">
+                                        <Badge variant="outline" className="border-slate-800 text-slate-400 text-xs">
                                             ID: {aud.id + 1}
                                         </Badge>
                                     </div>
@@ -216,28 +217,28 @@ export default function AudienceSegmentsPage() {
 
                                                 <div className="grid grid-cols-2 gap-6">
                                                     <div className="space-y-2">
-                                                        <div className="text-[9px] font-black text-slate-600 uppercase tracking-widest flex items-center gap-1.5">
+                                                        <div className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
                                                             <Info className="h-3 w-3" />
                                                             Demographics
                                                         </div>
-                                                        <p className="text-xs text-slate-300 leading-relaxed font-light">
+                                                        <p className="text-sm text-slate-300 leading-relaxed font-light">
                                                             {aud.demographics}
                                                         </p>
                                                     </div>
                                                     <div className="space-y-2">
-                                                        <div className="text-[9px] font-black text-slate-600 uppercase tracking-widest flex items-center gap-1.5">
+                                                        <div className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
                                                             <Sparkles className="h-3 w-3" />
                                                             Behaviors
                                                         </div>
-                                                        <p className="text-xs text-slate-300 leading-relaxed font-light">
+                                                        <p className="text-sm text-slate-300 leading-relaxed font-light">
                                                             {aud.behaviors}
                                                         </p>
                                                     </div>
                                                 </div>
 
-                                                <div className="p-4 bg-slate-900/50 rounded-2xl border border-slate-800">
-                                                    <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Segment Logic</div>
-                                                    <p className="text-xs text-slate-400 font-light italic leading-relaxed">
+                                                <div className="p-4 bg-black/40 backdrop-blur-md rounded-2xl border border-white/5">
+                                                    <div className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Segment Logic</div>
+                                                    <p className="text-sm text-slate-300 font-light italic leading-relaxed">
                                                         "{aud.description}"
                                                     </p>
                                                 </div>
@@ -245,7 +246,7 @@ export default function AudienceSegmentsPage() {
                                                 <div className="flex justify-between items-center pt-2">
                                                     <div className="flex gap-1.5">
                                                         {aud.targeting.map((t, i) => (
-                                                            <Badge key={i} className="bg-blue-500/10 text-blue-400 border-0 text-[9px] px-2 py-0.5">
+                                                            <Badge key={i} className="bg-blue-500/10 text-blue-400 border-0 text-xs px-2 py-0.5">
                                                                 {t}
                                                             </Badge>
                                                         ))}

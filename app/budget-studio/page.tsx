@@ -56,8 +56,8 @@ export default function BudgetStudio() {
 
     if (!currentPlan) {
         return (
-            <div className="container mx-auto p-8 max-w-6xl min-h-screen flex items-center justify-center">
-                <Card className="p-12 bg-[#151725] border border-slate-800 text-center max-w-lg w-full shadow-2xl rounded-3xl relative overflow-hidden group">
+            <div className="container mx-auto p-8 max-w-6xl min-h-screen flex items-center justify-center relative z-10">
+                <Card className="p-12 border border-white/5 text-center max-w-lg w-full shadow-2xl rounded-3xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-blue-600/10 transition-colors duration-1000" />
                     <Wallet className="h-20 w-20 mx-auto mb-6 text-slate-700 group-hover:text-blue-500/50 transition-colors duration-500" />
                     <h2 className="text-2xl font-bold text-white mb-2">No Active Media Plan</h2>
@@ -79,8 +79,8 @@ export default function BudgetStudio() {
     const isAllocationValid = Math.abs(totalAllocatedPct - 100) < 0.1;
 
     return (
-        <div className="min-h-screen bg-[#0F111A] text-slate-200">
-            <div className="container mx-auto p-6 md:p-8 max-w-7xl space-y-8 animate-in fade-in duration-500">
+        <div className="min-h-screen bg-transparent text-slate-200 relative z-10">
+            <div className="container mx-auto p-6 md:p-8 max-w-7xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div>
                         <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent inline-block">
@@ -99,7 +99,7 @@ export default function BudgetStudio() {
                 {/* Top Controls: Budget & Duration */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Total Investment */}
-                    <Card className="bg-[#151725] border border-slate-800 shadow-xl rounded-2xl relative overflow-hidden group">
+                    <Card className="border-white/5 shadow-xl rounded-2xl relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 blur-[50px] rounded-full group-hover:bg-green-500/10 transition-colors duration-500" />
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center gap-3 text-xl text-white">
@@ -137,7 +137,7 @@ export default function BudgetStudio() {
                     </Card>
 
                     {/* Campaign Duration */}
-                    <Card className="bg-[#151725] border border-slate-800 shadow-xl rounded-2xl relative overflow-hidden group">
+                    <Card className="border-white/5 shadow-xl rounded-2xl relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 blur-[50px] rounded-full group-hover:bg-purple-500/10 transition-colors duration-500" />
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center gap-3 text-xl text-white">
@@ -177,7 +177,7 @@ export default function BudgetStudio() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Allocation Controls */}
-                    <Card className="lg:col-span-2 bg-[#151725] border border-slate-800 shadow-xl rounded-2xl relative overflow-hidden">
+                    <Card className="lg:col-span-2 border-white/5 shadow-xl rounded-2xl relative overflow-hidden">
                         <CardHeader>
                             <div className="flex justify-between items-center">
                                 <CardTitle className="flex items-center gap-3 text-white">
@@ -203,7 +203,7 @@ export default function BudgetStudio() {
                         </CardHeader>
                         <CardContent className="space-y-6">
                             {currentPlan.funnel.map((stage, idx) => (
-                                <div key={stage.stage} className="p-5 rounded-xl bg-[#0F111A] border border-slate-800 hover:border-slate-700 transition-all duration-300 group">
+                                <div key={stage.stage} className="p-5 rounded-xl bg-black/40 backdrop-blur-md border border-white/5 hover:border-white/10 transition-all duration-300 group">
                                     <div className="flex justify-between items-end mb-4">
                                         <div className="space-y-1">
                                             <div className="font-semibold text-lg text-white flex items-center gap-3">
@@ -212,7 +212,7 @@ export default function BudgetStudio() {
                                             </div>
                                             <div className="text-sm text-slate-500 flex flex-wrap gap-2 pl-6">
                                                 {stage.kpis.slice(0, 3).map(kpi => (
-                                                    <span key={kpi} className="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-300 border border-slate-700">
+                                                    <span key={kpi} className="px-2 py-0.5 rounded text-xs bg-slate-800 text-slate-300 border border-slate-700">
                                                         {kpi}
                                                     </span>
                                                 ))}
@@ -248,7 +248,7 @@ export default function BudgetStudio() {
 
                     {/* Analytical Visualization */}
                     <div className="space-y-6">
-                        <Card className="bg-[#151725] border border-slate-800 shadow-xl rounded-2xl overflow-hidden">
+                        <Card className="border-white/5 shadow-xl rounded-2xl overflow-hidden">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-base text-white">
                                     <PieIcon className="h-5 w-5 text-slate-400" />
@@ -287,13 +287,13 @@ export default function BudgetStudio() {
                                             verticalAlign="bottom"
                                             height={36}
                                             iconType="circle"
-                                            formatter={(value) => <span className="text-slate-400 text-xs ml-1">{value}</span>}
+                                            formatter={(value) => <span className="text-slate-400 text-sm ml-1">{value}</span>}
                                         />
                                     </PieChart>
                                 </ResponsiveContainer>
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none pb-8">
                                     <div className="text-center">
-                                        <span className="text-[10px] uppercase tracking-widest text-slate-500">Total</span>
+                                        <span className="text-xs uppercase tracking-widest text-slate-400">Total</span>
                                         <div className="font-bold text-white text-lg">
                                             ${(localBudget / 1000).toFixed(1)}k
                                         </div>

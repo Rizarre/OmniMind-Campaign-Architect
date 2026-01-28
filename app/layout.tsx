@@ -25,16 +25,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased bg-[#0F111A] text-slate-100`}>
+      <body className={`${inter.variable} font-sans antialiased bg-[#02040a] text-slate-100 selection:bg-blue-500/30`}>
         <div className="flex h-screen overflow-hidden">
           <Sidebar />
-          <main className="flex-1 overflow-y-auto bg-[#0F111A] relative">
-            {/* Ambient Background Effects */}
-            <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-              <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full" />
-              <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-blue-900/10 blur-[120px] rounded-full" />
+          <main className="flex-1 overflow-y-auto bg-transparent relative custom-scrollbar">
+            {/* Ambient Background Effects - Deep Frosted Theme */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#02040a]">
+              {/* Primary Mesh Gradients */}
+              <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-indigo-600/10 blur-[160px] rounded-full animate-pulse" />
+              <div className="absolute bottom-[-10%] left-[-10%] w-[1200px] h-[1200px] bg-blue-600/5 blur-[160px] rounded-full opacity-50" />
+              <div className="absolute top-[20%] left-[20%] w-[600px] h-[600px] bg-purple-600/5 blur-[140px] rounded-full" />
+
+              {/* Floating Highlight Particles */}
+              <div className="absolute top-1/4 right-1/3 w-32 h-32 bg-blue-400/10 blur-[60px] rounded-full animate-bounce" style={{ animationDuration: '10s' }} />
+              <div className="absolute bottom-1/3 left-1/4 w-48 h-48 bg-purple-400/10 blur-[80px] rounded-full animate-pulse" style={{ animationDuration: '15s' }} />
+
+              {/* Noise Texture Overlay */}
+              <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
             </div>
-            <div className="relative z-10">
+
+            <div className="relative z-10 px-4 md:px-0">
               {children}
             </div>
           </main>

@@ -18,9 +18,18 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-12"
       >
-        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4 tracking-tight">
-          OmniMind Campaign Architect
-        </h1>
+        <div className="flex items-center gap-6 mb-4">
+          <div className="relative w-16 h-16 rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/20 border border-blue-500/20 shrink-0">
+            <img
+              src="/omnimind-logo.png"
+              alt="OmniMind Logo"
+              className="object-cover"
+            />
+          </div>
+          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tight py-2">
+            OmniMind Campaign Architect
+          </h1>
+        </div>
         <p className="text-xl text-slate-500 font-light max-w-2xl leading-relaxed">
           The industry's most advanced programmatic blueprint engine. Orchestrate precision-targeted campaigns with AI-driven strategy.
         </p>
