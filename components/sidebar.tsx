@@ -11,18 +11,21 @@ import {
     Target,
     TrendingUp,
     Download,
-    Activity
+    Activity,
+    Zap, // Added
+    Sparkles // Added
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 
 const navigation = [
     { name: 'Campaign Builder', href: '/', icon: Brain },
+    { name: 'Campaign Brain', href: '/campaign-brief', icon: Zap }, // New
+    { name: 'Creative Testing', href: '/creative-testing', icon: Sparkles }, // New
     { name: 'Targeting Tactics', href: '/targeting-tactics', icon: Target },
     { name: 'Audience Segments', href: '/audience-segments', icon: Users },
     { name: 'Ad Formats', href: '/ad-formats', icon: FlaskConical },
     { name: 'Budget Studio', href: '/budget-studio', icon: DollarSign },
     { name: 'Insights', href: '/insights', icon: TrendingUp },
-    { name: 'Real-Time Data', href: '/real-time-data', icon: Activity },
     { name: 'Export Center', href: '/export-center', icon: Download },
 ];
 

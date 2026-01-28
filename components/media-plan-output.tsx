@@ -45,16 +45,33 @@ export function MediaPlanOutput() {
     return (
         <div className="space-y-6">
             {/* Master Rationale */}
-            {currentPlan.masterRationale && (
+            {/* Campaign Context */}
+            {(currentPlan.geographicScope || currentPlan.flightDate) && (
                 <Card className="p-8 bg-[#151725] border-blue-500/20 shadow-xl overflow-hidden relative">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
                     <div className="flex gap-6 relative z-10">
                         <div className="p-4 bg-blue-500/10 rounded-2xl h-fit border border-blue-500/20">
                             <Sparkles className="h-6 w-6 text-blue-400" />
                         </div>
-                        <div className="space-y-2">
-                            <h3 className="text-xl font-bold text-white">Strategic Architecture Rationale</h3>
-                            <p className="text-slate-400 leading-relaxed font-light italic">"{currentPlan.masterRationale}"</p>
+                        <div className="space-y-4">
+                            <div>
+                                <h3 className="text-xl font-bold text-white">Strategic Campaign Context</h3>
+                                {!currentPlan.geographicScope && !currentPlan.flightDate && (
+                                    <p className="text-slate-400 leading-relaxed font-light italic">"Global Deployment"</p>
+                                )}
+                            </div>
+                            <div className="flex gap-4">
+                                {currentPlan.geographicScope && (
+                                    <div className="px-3 py-1 bg-slate-800 rounded-lg text-xs font-mono text-blue-200 border border-slate-700">
+                                        GEO: {currentPlan.geographicScope}
+                                    </div>
+                                )}
+                                {currentPlan.flightDate && (
+                                    <div className="px-3 py-1 bg-slate-800 rounded-lg text-xs font-mono text-green-200 border border-slate-700">
+                                        FLIGHT: {currentPlan.flightDate}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </Card>
@@ -193,30 +210,16 @@ export function MediaPlanOutput() {
                 </div>
                 <div className="flex flex-wrap gap-3">
                     {currentPlan.tactics.map((tactic, idx) => {
-                        const isObject = typeof tactic === 'object' && tactic !== null;
-                        const tacticName = isObject ? (tactic as any).name : tactic;
-                        const tacticDesc = isObject ? (tactic as any).description : '';
-                        const metricLabel = isObject ? (tactic as any).metric_label : '';
-                        const metricValue = isObject ? (tactic as any).metric_value : '';
-
+                        // Handle legacy object state from local storage
+                        const tacticLabel = typeof tactic === 'string' ? tactic : (tactic as any).name;
                         return (
                             <div key={idx} className="group/tactic relative">
                                 <Badge
                                     className="px-5 py-2.5 text-xs font-bold bg-[#0F111A] border border-blue-500/20 text-blue-300 hover:border-blue-500/50 transition-all cursor-default rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] flex items-center gap-2"
                                 >
                                     <Zap className="h-3 w-3 text-yellow-500" />
-                                    {tacticName}
+                                    {tacticLabel}
                                 </Badge>
-
-                                {isObject && (
-                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-900 border border-slate-800 rounded-lg shadow-2xl opacity-0 group-hover/tactic:opacity-100 transition-opacity pointer-events-none z-50">
-                                        <p className="text-[11px] text-slate-300 mb-2 leading-relaxed">{tacticDesc}</p>
-                                        <div className="flex justify-between items-center pt-2 border-t border-slate-800">
-                                            <span className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">{metricLabel}</span>
-                                            <span className="text-[10px] font-bold text-blue-400">{metricValue}</span>
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                         );
                     })}

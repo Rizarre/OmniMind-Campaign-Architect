@@ -18,10 +18,11 @@ export default function AudienceSegmentsPage() {
             ...aud,
             id: idx,
             // Fallback for demonstration if AI missed it
-            lat: aud.lat || 34.0522 + (idx * 0.1),
-            lng: aud.lng || -118.2437 + (idx * 0.1),
+            // Fallback for demonstration since we removed strict geo-typing
+            lat: 34.0522 + (idx * 0.1) + (Math.random() * 0.05),
+            lng: -118.2437 + (idx * 0.1) + (Math.random() * 0.05),
             demographics: aud.demographics || 'Premium Urban Professionals, Ages 25-45',
-            behaviors: aud.behaviors || 'Early tech adopters, High-frequency travelers, Sustainable luxury shoppers'
+            behaviors: 'Early tech adopters, High-frequency travelers, Sustainable luxury shoppers' // Static fallback
         }));
     }, [currentPlan?.audiences]);
 
@@ -116,8 +117,8 @@ export default function AudienceSegmentsPage() {
                                         whileHover={{ scale: 1.1 }}
                                     >
                                         <div className={`relative flex items-center justify-center p-3 rounded-full transition-all duration-300 ${selectedId === aud.id
-                                                ? 'bg-blue-500 scale-125 shadow-[0_0_20px_rgba(59,130,246,0.5)]'
-                                                : 'bg-indigo-900/40 border border-indigo-500/30'
+                                            ? 'bg-blue-500 scale-125 shadow-[0_0_20px_rgba(59,130,246,0.5)]'
+                                            : 'bg-indigo-900/40 border border-indigo-500/30'
                                             }`}>
                                             <Navigation className={`h-4 w-4 ${selectedId === aud.id ? 'text-white' : 'text-blue-400 rotate-45'}`} />
 
@@ -140,7 +141,7 @@ export default function AudienceSegmentsPage() {
                                 <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Active Footprint</div>
                                 <div className="text-sm font-bold text-white flex items-center gap-2">
                                     <MapPin className="h-3 w-3 text-blue-400" />
-                                    {currentPlan.masterRationale?.split('.')[0] || 'Target Region'}
+                                    {currentPlan.geographicScope || 'Target Region'}
                                 </div>
                             </div>
 

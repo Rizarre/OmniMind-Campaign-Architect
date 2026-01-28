@@ -13,10 +13,7 @@ export interface Audience {
     targeting: string[];
     description?: string;
     estimatedReach?: number;
-    demographics: string;
-    behaviors: string;
-    lat: number;
-    lng: number;
+    demographics?: string; // Added for more detail
 }
 
 export interface AdFormats {
@@ -38,11 +35,27 @@ export interface MediaPlan {
     funnel: FunnelStage[];
     audiences: Audience[];
     formats: AdFormats;
-    tactics: Tactic[];
+    tactics: string[]; // Reverted to string[] to match AI output schema
     budget_split: BudgetSplit;
     totalBudget?: number;
     duration?: number;
-    masterRationale?: string;
+
+    // Enhanced fields
+    flightDate?: string;
+    geographicScope?: string;
+    frequency?: string; // e.g. "Burst", "Pulse", "Continuous"
+    blackoutPeriods?: string[];
+
+    constraints?: {
+        financial?: string;
+        channels?: string[];
+        formatPreferences?: string[];
+    };
+
+    creativeReadiness?: {
+        status: string;
+        inputs: string[];
+    };
 }
 
 export interface CampaignInput {
