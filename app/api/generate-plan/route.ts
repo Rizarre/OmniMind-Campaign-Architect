@@ -1,7 +1,10 @@
-import { openai } from '@ai-sdk/openai';
-import { streamObject } from 'ai';
+import OpenAI from 'openai';
 import { z } from 'zod';
 import { generateMediaPlanPrompt } from '@/lib/prompts';
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 // Define the schema for the media plan
 const mediaPlanSchema = z.object({
@@ -56,13 +59,47 @@ export async function POST(req: Request) {
             industry
         });
 
-        const result = await streamObject({
-            model: openai('gpt-4o'),
-            schema: mediaPlanSchema,
-            prompt: systemPrompt,
+        const stream = await openai.chat.completions.create({
+            model: 'gpt-4o',
+            messages: [
+                {
+                    role: 'system',
+                    content: `You are an expert programmatic media strategist. Generate a JSON response that matches this exact schema:
+${JSON.stringify(mediaPlanSchema.shape, null, 2)}
+Respond ONLY with valid JSON, no markdown or explanation.`
+                },
+                { role: 'user', content: systemPrompt }
+            ],
+            response_format: { type: 'json_object' },
+            stream: true,
         });
 
-        return result.toTextStreamResponse();
+        const encoder = new TextEncoder();
+        const readable = new ReadableStream({
+            async start(controller) {
+                let fullContent = '';
+                for await (const chunk of stream) {
+                    const content = chunk.choices[0]?.delta?.content || '';
+                    fullContent += content;
+                    controller.enqueue(encoder.encode(content));
+                }
+                // Send final parsed object
+                try {
+                    const parsed = JSON.parse(fullContent);
+                    controller.enqueue(encoder.encode('\n' + JSON.stringify({ object: parsed })));
+                } catch (e) {
+                    // If parsing fails, send raw content
+                }
+                controller.close();
+            },
+        });
+
+        return new Response(readable, {
+            headers: {
+                'Content-Type': 'text/plain; charset=utf-8',
+                'Transfer-Encoding': 'chunked',
+            },
+        });
     } catch (error) {
         console.error('Error generating media plan:', error);
         return new Response('Error generating media plan', { status: 500 });
