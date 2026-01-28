@@ -140,10 +140,14 @@ OmniMind utilizes a **Top-Down Strategic Orchestration** approach:
 *   **Language Support**: Optimized primarily for English-language campaign briefs.
 *   **Attribution Preview**: Projected ROI is an estimate based on industry averages and does not account for specific 1st-party CRM data.
 
-### 🔮 Future Roadmap
-*   **DSP Direct Integration**: API connectivity to The Trade Desk and DV360 for instant campaign pushing.
-*   **Live Signal Intelligence**: Integration with live stock market and Google Trends APIs for truly real-time budget shifting.
-*   **DCO Mockups**: Generating actual image/video ad previews based on AI-generated creative concepts.
+### 🔮 Future Roadmap (OmniMind V2)
+
+*   **🎨 Dynamic Creative Forge (DCO)**: AI-powered generation of ad copy and visual concepts mapped directly to the neural audience segments.
+*   **📡 Deep Pulse Live Intelligence**: Real-time integration with Google Trends, NewsAPI, and OpenWeather to trigger automated budget shifts based on worldly events.
+*   **🕴️ Executive Presentation Mode**: A high-fidelity toggle that refines the technical UI into a clean, client-ready "Strategic Deck" for CMO reviews.
+*   **📊 Benchmarking Terminal**: Compare AI-generated projections against real-time industry averages by vertical (e.g., Finance vs. FMCG).
+*   **🤖 Neural Strategic Copilot**: An active AI collaborator that understands your current strategy context and provides real-time optimization advice, ROI analysis, and tactical refinements.
+*   **📥 DSP Direct Push**: One-click campaign synchronization with The Trade Desk and DV360 APIs.
 
 ---
 

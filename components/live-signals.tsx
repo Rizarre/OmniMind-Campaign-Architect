@@ -117,7 +117,7 @@ export function LiveSignals() {
                 </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-xs text-slate-400 font-medium italic">
+            <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs text-slate-300 font-semibold">
                 <span>* Data synchronized with global DSP index & local event APIs</span>
                 <span className="flex items-center gap-1 font-bold">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-ping" />

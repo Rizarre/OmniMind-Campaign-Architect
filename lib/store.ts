@@ -18,6 +18,7 @@ interface AppState {
     isRefining: boolean;
     error: string | null;
     insights: InsightData | null;
+    isPresentationMode: boolean;
 
     // Actions
     setCurrentPlan: (plan: MediaPlan) => void;
@@ -26,6 +27,7 @@ interface AppState {
     setIsRefining: (loading: boolean) => void;
     setError: (error: string | null) => void;
     setPrompt: (prompt: string) => void;
+    togglePresentationMode: () => void;
 
     // Scenario actions
     addScenario: (scenario: Scenario) => void;
@@ -50,12 +52,14 @@ export const useAppStore = create<AppState>()(
             isRefining: false,
             error: null,
             insights: null,
+            isPresentationMode: false,
 
             setCurrentPlan: (plan) => set({ currentPlan: plan }),
             setCampaignInput: (input) => set({ campaignInput: input }),
             setIsGenerating: (loading) => set({ isGenerating: loading }),
             setIsRefining: (loading) => set({ isRefining: loading }),
             setError: (error) => set({ error }),
+            togglePresentationMode: () => set((state) => ({ isPresentationMode: !state.isPresentationMode })),
             setPrompt: (prompt) => set((state) => ({
                 campaignInput: state.campaignInput
                     ? { ...state.campaignInput, prompt }
@@ -248,7 +252,7 @@ export const useAppStore = create<AppState>()(
         }),
         {
             name: 'omni-mind-storage',
-            storage: createJSONStorage(() => localStorage),
+            storage: createJSONStorage(() => sessionStorage),
         }
     )
 );

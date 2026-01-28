@@ -12,11 +12,13 @@ import {
     TrendingUp,
     Download,
     Activity,
-    Zap, // Added
-    Sparkles // Added
+    Zap,
+    Sparkles,
+    Monitor
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const navigation = [
     { name: 'Campaign Builder', href: '/', icon: Brain },
@@ -32,7 +34,12 @@ const navigation = [
 
 export function Sidebar() {
     const pathname = usePathname();
-    const { currentPlan, campaignInput } = useAppStore();
+    const {
+        currentPlan,
+        campaignInput,
+        isPresentationMode,
+        togglePresentationMode
+    } = useAppStore();
 
     return (
         <div className="flex h-screen w-64 flex-col border-r border-white/5 bg-[#0F111A]/40 backdrop-blur-2xl text-slate-300 relative z-50">
@@ -46,7 +53,7 @@ export function Sidebar() {
                             className="object-cover"
                         />
                     </div>
-                    <h1 className="text-xl font-black bg-gradient-to-br from-white via-slate-300 to-slate-500 bg-clip-text text-transparent italic tracking-tight">
+                    <h1 className="text-xl font-black bg-gradient-to-br from-white via-blue-200 to-blue-400 bg-clip-text text-transparent italic tracking-tight">
                         OmniMind
                     </h1>
                 </div>
@@ -105,10 +112,34 @@ export function Sidebar() {
             </nav>
 
             {/* Footer */}
-            <div className="border-t border-white/5 p-4 bg-black/20">
+            <div className="border-t border-white/5 p-4 bg-black/20 space-y-4">
+                <button
+                    onClick={togglePresentationMode}
+                    className={cn(
+                        "w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-300 group",
+                        isPresentationMode
+                            ? "bg-blue-600/20 border-blue-500/50 text-blue-400 shadow-lg shadow-blue-500/10"
+                            : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
+                    )}
+                >
+                    <div className="flex items-center gap-3">
+                        <Monitor className={cn("h-4 w-4", isPresentationMode ? "text-blue-400" : "text-slate-500 group-hover:text-slate-300")} />
+                        <span className="text-xs font-black uppercase tracking-widest">Presentation</span>
+                    </div>
+                    <div className={cn(
+                        "w-8 h-4 rounded-full relative transition-colors duration-300",
+                        isPresentationMode ? "bg-blue-500" : "bg-slate-700"
+                    )}>
+                        <div className={cn(
+                            "absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all duration-300",
+                            isPresentationMode ? "left-4.5" : "left-0.5"
+                        )} />
+                    </div>
+                </button>
+
                 <div className="text-xs font-black text-slate-400 text-center uppercase tracking-widest flex items-center justify-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    System Online
+                    {isPresentationMode ? "Deck Optimized" : "System Online"}
                 </div>
             </div>
         </div>
