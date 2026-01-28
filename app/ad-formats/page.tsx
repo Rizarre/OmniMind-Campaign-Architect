@@ -19,8 +19,8 @@ export default function AdFormatsPage() {
 
     if (!currentPlan) {
         return (
-            <div className="container mx-auto p-8 max-w-5xl min-h-screen flex items-center justify-center">
-                <Card className="p-16 bg-[#151725] border-slate-800 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
+            <div className="container mx-auto p-8 max-w-5xl min-h-screen flex items-center justify-center relative z-10">
+                <Card className="p-16 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/5 blur-[100px] rounded-full pointer-events-none" />
                     <Layers className="h-24 w-24 mx-auto mb-8 text-slate-700 animate-pulse" />
                     <h2 className="text-3xl font-bold text-white mb-4 italic">Awaiting Creative Parameters</h2>
@@ -39,8 +39,8 @@ export default function AdFormatsPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#0F111A] text-slate-200">
-            <div className="container mx-auto p-8 max-w-7xl space-y-12 animate-in fade-in duration-700">
+        <div className="min-h-screen bg-transparent text-slate-200 relative z-10">
+            <div className="container mx-auto p-8 max-w-7xl space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 {/* Page Header */}
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -65,10 +65,10 @@ export default function AdFormatsPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.1 }}
                         >
-                            <Card className="bg-[#151725] border-slate-800/50 rounded-[2.5rem] overflow-hidden group hover:border-purple-500/30 transition-all shadow-xl flex flex-col h-full">
+                            <Card className="p-8 md:p-10 border-white/5 rounded-[2.5rem] overflow-hidden group hover:border-purple-500/30 transition-all shadow-xl flex flex-col h-full">
                                 <CardHeader className="p-8 pb-4">
                                     <div className="flex justify-between items-start mb-4">
-                                        <Badge className="bg-purple-900/40 text-purple-300 border-purple-500/20 px-3 py-1 rounded-full uppercase text-[10px] tracking-widest font-bold">
+                                        <Badge className="bg-purple-900/40 text-purple-300 border-purple-500/20 px-3 py-1 rounded-full uppercase text-xs tracking-widest font-bold">
                                             {stage}
                                         </Badge>
                                         <div className="p-2 bg-slate-900 rounded-lg border border-white/5">
@@ -82,10 +82,10 @@ export default function AdFormatsPage() {
                                 </CardHeader>
                                 <CardContent className="p-8 pt-4 space-y-6 flex-1">
                                     <div className="space-y-3">
-                                        <div className="text-[10px] uppercase font-black text-slate-600 tracking-widest">Recommended Units</div>
+                                        <div className="text-xs uppercase font-black text-slate-400 tracking-widest">Recommended Units</div>
                                         <div className="grid grid-cols-1 gap-3">
                                             {formats.map((format, i) => (
-                                                <div key={i} className="flex items-center gap-4 p-4 bg-[#0F111A]/50 rounded-2xl border border-slate-800/50 hover:bg-slate-800/30 transition-colors group/format">
+                                                <div key={i} className="flex items-center gap-4 p-4 bg-black/40 backdrop-blur-md rounded-2xl border border-white/5 hover:bg-white/5 transition-colors group/format">
                                                     <div className="p-2 bg-purple-500/10 rounded-lg text-purple-400 group-hover/format:scale-110 transition-transform">
                                                         {getIconForFormat(format)}
                                                     </div>
@@ -98,7 +98,7 @@ export default function AdFormatsPage() {
                                     <div className="pt-6 border-t border-slate-800/50">
                                         <div className="flex items-start gap-3 bg-purple-500/5 p-4 rounded-2xl border border-purple-500/10">
                                             <Sparkles className="h-4 w-4 text-purple-400 mt-0.5" />
-                                            <p className="text-[11px] text-slate-400 leading-relaxed">
+                                            <p className="text-sm text-slate-300 leading-relaxed font-medium">
                                                 AI Insight: Using {formats[0] || 'standard units'} here is expected to increase engagement by 18% based on current audience behavior.
                                             </p>
                                         </div>
@@ -110,7 +110,7 @@ export default function AdFormatsPage() {
                 </div>
 
                 {/* General Best Practices */}
-                <Card className="p-10 bg-[#151725] border-slate-800 rounded-[2.5rem] relative overflow-hidden">
+                <Card className="p-10 border-white/5 rounded-[2.5rem] relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
                         <div className="space-y-6">
@@ -135,10 +135,10 @@ export default function AdFormatsPage() {
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-[#0F111A] p-8 rounded-[2rem] border border-slate-800/50 flex flex-col justify-center text-center space-y-4">
+                        <div className="bg-black/40 p-8 rounded-[2rem] border border-white/5 flex flex-col justify-center text-center space-y-4">
                             <div className="text-5xl font-bold text-white">12.4%</div>
-                            <div className="text-xs font-black text-slate-500 uppercase tracking-widest">Projected CTR Lift</div>
-                            <p className="text-xs text-slate-600 max-w-[200px] mx-auto leading-relaxed">Using architect-recommended formats vs. generic standardized units.</p>
+                            <div className="text-sm font-black text-slate-400 uppercase tracking-widest">Projected CTR Lift</div>
+                            <p className="text-sm text-slate-400 max-w-[200px] mx-auto leading-relaxed">Using architect-recommended formats vs. generic standardized units.</p>
                         </div>
                     </div>
                 </Card>

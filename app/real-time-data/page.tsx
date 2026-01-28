@@ -10,7 +10,7 @@ export default function RealTimeDataPage() {
     const { campaignInput, isGenerating } = useAppStore();
 
     return (
-        <div className="min-h-screen bg-[#0F111A] text-slate-200">
+        <div className="min-h-screen bg-transparent text-slate-200 relative z-10">
             <div className="container mx-auto p-6 md:p-8 max-w-7xl space-y-10 animate-in fade-in duration-500">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -38,10 +38,10 @@ export default function RealTimeDataPage() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                     >
-                        <Card className="p-12 bg-[#151725] border border-slate-800 text-center rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                        <Card className="p-16 border-white/5 text-center rounded-[3rem] shadow-2xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
                             <div className="relative z-10 space-y-6">
-                                <div className="p-6 bg-slate-900/50 rounded-full w-fit mx-auto border border-slate-800">
+                                <div className="p-8 bg-white/5 rounded-full w-fit mx-auto border border-white/5">
                                     <AlertTriangle className="h-12 w-12 text-slate-600" />
                                 </div>
                                 <div className="space-y-2">
@@ -71,7 +71,7 @@ export default function RealTimeDataPage() {
 
                         {/* Additional Page Content: Contextual Reasoning */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <Card className="p-8 bg-[#151725] border-slate-800 rounded-3xl relative overflow-hidden group">
+                            <Card className="p-8 md:p-10 border-white/5 rounded-3xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl group-hover:bg-blue-500/10 transition-colors" />
                                 <div className="flex gap-4 items-start relative z-10">
                                     <div className="p-3 bg-blue-500/10 rounded-2xl border border-blue-500/20">
@@ -86,7 +86,7 @@ export default function RealTimeDataPage() {
                                 </div>
                             </Card>
 
-                            <Card className="p-8 bg-[#151725] border-slate-800 rounded-3xl relative overflow-hidden group">
+                            <Card className="p-8 md:p-10 border-white/5 rounded-3xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 blur-3xl group-hover:bg-purple-500/10 transition-colors" />
                                 <div className="flex gap-4 items-start relative z-10">
                                     <div className="p-3 bg-purple-500/10 rounded-2xl border border-purple-500/20">

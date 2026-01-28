@@ -35,8 +35,8 @@ export default function TargetingTacticsPage() {
 
     if (!currentPlan || !currentPlan.tactics) {
         return (
-            <div className="container mx-auto p-8 max-w-5xl min-h-screen flex items-center justify-center">
-                <Card className="p-16 bg-[#151725] border-slate-800 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
+            <div className="container mx-auto p-8 max-w-5xl min-h-screen flex items-center justify-center relative z-10">
+                <Card className="p-16 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
                     <Crosshair className="h-24 w-24 mx-auto mb-8 text-slate-700 animate-pulse" />
                     <h2 className="text-3xl font-bold text-white mb-4 italic">Awaiting Strategic Mission</h2>
@@ -55,8 +55,8 @@ export default function TargetingTacticsPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#0F111A] text-slate-200">
-            <div className="container mx-auto p-8 max-w-7xl space-y-12 animate-in fade-in duration-700">
+        <div className="min-h-screen bg-transparent text-slate-200 relative z-10">
+            <div className="container mx-auto p-6 md:p-8 max-w-7xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 {/* Page Header */}
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -90,24 +90,24 @@ export default function TargetingTacticsPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: idx * 0.15 }}
                             >
-                                <Card className="bg-[#151725] border-slate-800/50 p-8 rounded-[2.5rem] relative overflow-hidden group hover:border-slate-700 transition-all shadow-xl">
+                                <Card className="p-8 md:p-10 border-white/5 rounded-[2.5rem] overflow-hidden group hover:border-purple-500/30 transition-all shadow-xl flex flex-col h-full">
                                     <div className={`absolute top-0 right-0 w-64 h-64 ${bgClass} blur-[80px] rounded-full pointer-events-none group-hover:opacity-100 opacity-50 transition-opacity`} />
 
-                                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-10">
+                                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-10 items-center">
                                         <div className="lg:col-span-3 space-y-6">
                                             <div className={`w-20 h-20 rounded-3xl ${bgClass} flex items-center justify-center border border-white/5 shadow-2xl`}>
                                                 <Icon className={`h-10 w-10 ${colorClass}`} />
                                             </div>
                                             <div>
-                                                <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Tactic Metric</div>
+                                                <div className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Tactic Metric</div>
                                                 <div className="space-y-1">
                                                     <div className="text-3xl font-bold font-mono text-white tracking-tighter">
                                                         {tactic.metric_value}%
                                                     </div>
-                                                    <div className="text-xs font-medium text-slate-500">{tactic.metric_label}</div>
+                                                    <div className="text-sm font-medium text-slate-400">{tactic.metric_label}</div>
                                                 </div>
                                             </div>
-                                            <Badge className="bg-slate-900/80 text-blue-400 border border-blue-500/20 py-1.5 px-4 rounded-full">
+                                            <Badge className="bg-slate-900/80 text-blue-400 border border-blue-500/20 py-1.5 px-4 rounded-full w-fit">
                                                 <ShieldCheck className="w-3.5 h-3.5 mr-2" />
                                                 Active Optimization
                                             </Badge>
@@ -125,7 +125,7 @@ export default function TargetingTacticsPage() {
 
                                             <div className="flex items-center gap-3 bg-blue-500/5 p-4 rounded-2xl border border-blue-500/10 w-fit">
                                                 <Zap className="h-4 w-4 text-blue-400" />
-                                                <p className="text-xs text-slate-400 font-medium">
+                                                <p className="text-sm text-slate-300 font-medium">
                                                     Algorithmically synced with your latest campaign brief.
                                                 </p>
                                             </div>
@@ -137,7 +137,7 @@ export default function TargetingTacticsPage() {
                     })}
                 </div>
 
-                <Card className="p-10 bg-gradient-to-r from-blue-900/20 to-indigo-900/20 border-blue-500/20 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8 mt-12">
+                <Card className="p-10 bg-gradient-to-r from-blue-900/10 to-indigo-900/10 border-white/5 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8 mt-12 backdrop-blur-md">
                     <div className="flex gap-6 items-center text-left">
                         <div className="p-4 bg-blue-500/20 rounded-2xl">
                             <Zap className="h-8 w-8 text-blue-400 fill-blue-400/20" />
@@ -149,6 +149,6 @@ export default function TargetingTacticsPage() {
                     </div>
                 </Card>
             </div>
-        </div>
+        </div >
     );
 }

@@ -10,14 +10,14 @@ export function MediaPlanOutput() {
 
     if (!currentPlan) {
         return (
-            <Card className="p-12 bg-[#151725] border-slate-800 border-dashed border-2 rounded-3xl relative overflow-hidden group min-h-[660px] flex items-center justify-center transition-all hover:border-blue-500/20">
+            <Card className="p-12 border-white/5 border-dashed border-2 rounded-3xl relative overflow-hidden group min-h-[660px] flex items-center justify-center transition-all hover:border-blue-500/20">
                 {/* Visual Glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
 
                 <div className="text-center relative z-10 space-y-8">
                     <div className="relative inline-block">
                         <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full animate-pulse" />
-                        <div className="p-8 bg-slate-900/50 rounded-[2.5rem] border border-slate-800 shadow-2xl relative z-10">
+                        <div className="p-8 bg-white/5 backdrop-blur-2xl rounded-[2.5rem] border border-white/5 shadow-2xl relative z-10">
                             <Target className="h-16 w-16 mx-auto text-blue-400" />
                         </div>
                     </div>
@@ -35,7 +35,7 @@ export function MediaPlanOutput() {
                                 <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-500/40 animate-bounce" style={{ animationDelay: `${i * 0.2}s` }} />
                             ))}
                         </div>
-                        <span className="text-[10px] uppercase tracking-[0.3em] text-slate-600 font-bold">System Warmup Ready</span>
+                        <span className="text-xs uppercase tracking-[0.3em] text-slate-400 font-bold">System Warmup Ready</span>
                     </div>
                 </div>
             </Card>
@@ -47,7 +47,7 @@ export function MediaPlanOutput() {
             {/* Master Rationale */}
             {/* Campaign Context */}
             {(currentPlan.geographicScope || currentPlan.flightDate) && (
-                <Card className="p-8 bg-[#151725] border-blue-500/20 shadow-xl overflow-hidden relative">
+                <Card className="p-8 border-white/10 shadow-xl overflow-hidden relative">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
                     <div className="flex gap-6 relative z-10">
                         <div className="p-4 bg-blue-500/10 rounded-2xl h-fit border border-blue-500/20">
@@ -78,7 +78,7 @@ export function MediaPlanOutput() {
             )}
 
             {/* Funnel Timeline */}
-            <Card className="p-6 bg-[#1E202E] border-slate-800 shadow-xl overflow-hidden relative">
+            <Card className="p-6 border-white/5 shadow-2xl overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-[50px] rounded-full pointer-events-none" />
 
                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-white relative z-10">
@@ -89,7 +89,7 @@ export function MediaPlanOutput() {
                     {currentPlan.funnel.map((stage, idx) => (
                         <div
                             key={idx}
-                            className="group relative p-5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-800/50 transition-all duration-300 hover:border-blue-500/30 flex flex-col"
+                            className="group relative p-5 rounded-xl border border-white/5 bg-black/20 backdrop-blur-md hover:bg-black/30 transition-all duration-300 hover:border-blue-500/30 flex flex-col"
                         >
                             <div className="absolute -top-3 left-4">
                                 <Badge className="bg-blue-600 hover:bg-blue-500 text-white font-semibold border-0 px-3">
@@ -101,7 +101,7 @@ export function MediaPlanOutput() {
                                     <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Primary KPIs</div>
                                     <div className="flex flex-wrap gap-2">
                                         {stage.kpis.map((kpi, i) => (
-                                            <Badge key={i} variant="outline" className="text-[10px] border-slate-700 text-slate-400 bg-slate-900/50">
+                                            <Badge key={i} variant="outline" className="text-xs border-slate-700 text-slate-300 bg-slate-900/50 px-3 py-1">
                                                 {kpi}
                                             </Badge>
                                         ))}
@@ -109,7 +109,7 @@ export function MediaPlanOutput() {
                                 </div>
 
                                 {stage.rationale && (
-                                    <div className="text-[11px] text-slate-500 italic leading-relaxed border-l border-blue-500/20 pl-3">
+                                    <div className="text-xs text-slate-400 italic leading-relaxed border-l border-blue-500/20 pl-3">
                                         {stage.rationale}
                                     </div>
                                 )}
@@ -117,7 +117,7 @@ export function MediaPlanOutput() {
                                 <div className="pt-2 border-t border-slate-700/50 mt-auto">
                                     <div className="flex justify-between items-end">
                                         <div>
-                                            <div className="text-[10px] font-semibold text-slate-600 mb-1 uppercase tracking-wider">Allocation</div>
+                                            <div className="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wider">Allocation</div>
                                             <div className="text-2xl font-bold text-green-400">
                                                 ${(stage.budget_amount || 0).toLocaleString()}
                                             </div>
@@ -134,7 +134,7 @@ export function MediaPlanOutput() {
             </Card>
 
             {/* Audience segments (Existing but enhanced) */}
-            <Card className="p-6 bg-[#1E202E] border-slate-800 shadow-xl">
+            <Card className="p-6 border-white/5 shadow-2xl">
                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-white">
                     <Users className="h-5 w-5 text-purple-400" />
                     High-Potential Audience Segments
@@ -143,7 +143,7 @@ export function MediaPlanOutput() {
                     {currentPlan.audiences.map((audience, idx) => (
                         <div
                             key={idx}
-                            className="p-5 rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-900/50 to-transparent hover:border-purple-500/30 transition-all group/aud"
+                            className="p-5 rounded-xl border border-white/5 bg-black/20 backdrop-blur-md hover:border-purple-500/30 transition-all group/aud"
                         >
                             <div className="flex justify-between items-start mb-2">
                                 <h4 className="font-bold text-lg text-slate-200 group-hover/aud:text-white transition-colors">{audience.name}</h4>
@@ -156,7 +156,7 @@ export function MediaPlanOutput() {
                             )}
                             <div className="flex flex-wrap gap-1.5">
                                 {audience.targeting.map((target, i) => (
-                                    <Badge key={i} variant="secondary" className="text-[10px] bg-slate-800 text-slate-400 hover:bg-slate-700 transition-colors border-slate-700">
+                                    <Badge key={i} variant="secondary" className="text-xs bg-slate-800/80 text-slate-300 hover:bg-slate-700 transition-colors border-slate-700 px-3 py-1">
                                         {target}
                                     </Badge>
                                 ))}
@@ -167,14 +167,14 @@ export function MediaPlanOutput() {
             </Card>
 
             {/* Ad Formats */}
-            <Card className="p-6 bg-[#1E202E] border-slate-800 shadow-xl overflow-hidden">
+            <Card className="p-6 border-white/5 shadow-2xl overflow-hidden">
                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-white">
                     <DollarSign className="h-5 w-5 text-green-400" />
                     Activation: Optimal Creative Formats
                 </h3>
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm text-left text-slate-400">
-                        <thead className="text-[10px] text-slate-500 uppercase bg-slate-900/50 tracking-widest">
+                        <thead className="text-xs text-slate-400 uppercase bg-slate-900/50 tracking-widest">
                             <tr>
                                 <th className="px-6 py-4 rounded-l-lg">Deployment Tier</th>
                                 <th className="px-6 py-4 rounded-r-lg">Recommended Ad Types</th>
@@ -201,7 +201,7 @@ export function MediaPlanOutput() {
             </Card>
 
             {/* Targeting Tactics */}
-            <Card className="p-6 bg-[#1E202E] border-slate-800 shadow-xl">
+            <Card className="p-6 border-white/5 shadow-2xl">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-xl font-bold text-white flex items-center gap-2">
                         <Target className="h-5 w-5 text-blue-400" />
@@ -215,7 +215,7 @@ export function MediaPlanOutput() {
                         return (
                             <div key={idx} className="group/tactic relative">
                                 <Badge
-                                    className="px-5 py-2.5 text-xs font-bold bg-[#0F111A] border border-blue-500/20 text-blue-300 hover:border-blue-500/50 transition-all cursor-default rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] flex items-center gap-2"
+                                    className="px-5 py-2.5 text-xs font-bold bg-black/40 backdrop-blur-md border border-blue-500/20 text-blue-300 hover:border-blue-500/50 transition-all cursor-default rounded-xl shadow-lg flex items-center gap-2"
                                 >
                                     <Zap className="h-3 w-3 text-yellow-500" />
                                     {tacticLabel}

@@ -24,8 +24,8 @@ export default function Insights() {
 
     if (!campaignInput || isGenerating) {
         return (
-            <div className="container mx-auto p-8 max-w-5xl min-h-screen flex items-center justify-center">
-                <Card className="p-16 bg-[#151725] border-slate-800 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
+            <div className="container mx-auto p-8 max-w-5xl min-h-screen flex items-center justify-center relative z-10">
+                <Card className="p-16 border-dashed border-2 text-center rounded-[3rem] shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
                     <Sparkles className="h-24 w-24 mx-auto mb-8 text-slate-700 animate-pulse" />
                     <h2 className="text-3xl font-bold text-white mb-4 italic">Analysis Engine Offline</h2>
@@ -44,8 +44,8 @@ export default function Insights() {
     }
 
     return (
-        <div className="min-h-screen bg-[#0F111A] text-slate-200">
-            <div className="container mx-auto p-8 max-w-6xl space-y-12">
+        <div className="min-h-screen bg-transparent text-slate-200 relative z-10">
+            <div className="container mx-auto p-8 max-w-6xl space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function Insights() {
                             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent inline-block">
                                 Market Intelligence
                             </h1>
-                            <Badge className="bg-slate-900 border-slate-800 text-slate-500 text-[10px] tracking-widest font-black uppercase py-1 px-3">
+                            <Badge className="bg-slate-900 border-slate-800 text-slate-400 text-xs tracking-widest font-black uppercase py-1 px-3">
                                 Beta Telemetry
                             </Badge>
                         </div>
@@ -74,7 +74,7 @@ export default function Insights() {
                 >
                     {/* Local Events & Geo-Context */}
                     <motion.div variants={item}>
-                        <Card className="p-10 bg-[#151725] border-slate-800 shadow-2xl rounded-[2.5rem] relative overflow-hidden group h-full">
+                        <Card className="p-10 border-white/5 shadow-2xl rounded-[2.5rem] relative overflow-hidden group h-full">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
 
                             <div className="flex items-center gap-4 mb-8">
@@ -89,11 +89,11 @@ export default function Insights() {
                                     <motion.div
                                         key={idx}
                                         whileHover={{ x: 10 }}
-                                        className="p-5 rounded-2xl bg-[#0F111A]/60 border border-slate-800 flex items-center justify-between group/event"
+                                        className="p-5 rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 flex items-center justify-between group/event"
                                     >
                                         <div className="flex items-center gap-4">
                                             <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-                                            <p className="font-medium text-slate-300 group-hover/event:text-blue-200 transition-colors uppercase text-[10px] tracking-widest">{event}</p>
+                                            <p className="font-medium text-slate-200 group-hover/event:text-blue-200 transition-colors uppercase text-xs tracking-widest">{event}</p>
                                         </div>
                                     </motion.div>
                                 )) || (
@@ -115,7 +115,7 @@ export default function Insights() {
 
                     {/* Trending Search Momentum */}
                     <motion.div variants={item}>
-                        <Card className="p-10 bg-[#151725] border-slate-800 shadow-2xl rounded-[2.5rem] relative overflow-hidden group h-full">
+                        <Card className="p-10 border-white/5 shadow-2xl rounded-[2.5rem] relative overflow-hidden group h-full">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/5 blur-[80px] rounded-full pointer-events-none" />
 
                             <div className="flex items-center gap-4 mb-8">
@@ -129,7 +129,7 @@ export default function Insights() {
                                 {insights?.trendingSearches.map((search, idx) => (
                                     <Badge
                                         key={idx}
-                                        className="px-5 py-2.5 text-sm bg-[#0F111A] text-slate-400 hover:text-purple-300 border-slate-800 hover:border-purple-500/30 transition-all rounded-xl flex gap-2 items-center cursor-default shadow-sm"
+                                        className="px-5 py-2.5 text-sm bg-black/40 backdrop-blur-md text-slate-400 hover:text-purple-300 border-white/5 hover:border-purple-500/30 transition-all rounded-xl flex gap-2 items-center cursor-default shadow-sm"
                                     >
                                         <TrendingUp className="h-3.5 w-3.5 text-purple-500" />
                                         {search}
@@ -153,7 +153,7 @@ export default function Insights() {
 
                     {/* CPM Market Indices */}
                     <motion.div variants={item} className="lg:col-span-2">
-                        <Card className="p-10 bg-[#151725] border-slate-800 shadow-2xl rounded-[2.5rem] relative overflow-hidden group">
+                        <Card className="p-10 border-white/5 shadow-2xl rounded-[2.5rem] relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-96 h-96 bg-green-600/5 blur-[120px] rounded-full pointer-events-none" />
 
                             <div className="flex items-center justify-between mb-10">
@@ -163,7 +163,7 @@ export default function Insights() {
                                     </div>
                                     <h3 className="text-2xl font-bold text-white tracking-tight">Live CPM Estimator</h3>
                                 </div>
-                                <div className="flex items-center gap-2 text-[10px] text-slate-600 font-black tracking-widest uppercase">
+                                <div className="flex items-center gap-2 text-xs text-slate-400 font-black tracking-widest uppercase">
                                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                                     Refreshed: Every 15m
                                 </div>
@@ -172,8 +172,8 @@ export default function Insights() {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {insights ? (
                                     Object.entries(insights.avgCPM).map(([type, value], i) => (
-                                        <div key={i} className="p-8 rounded-[2rem] bg-[#0F111A] border border-slate-800 shadow-inner group/stat hover:border-slate-700 transition-all">
-                                            <div className="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] mb-4 group-hover/stat:text-slate-500 transition-colors">
+                                        <div key={i} className="p-8 rounded-[2rem] bg-black/20 backdrop-blur-md border border-white/5 shadow-inner group/stat hover:border-white/10 transition-all">
+                                            <div className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4 group-hover/stat:text-slate-300 transition-colors">
                                                 {type.replace('_', ' ')} unit
                                             </div>
                                             <div className={`text-4xl font-bold text-white tracking-tighter mb-2 font-mono`}>
