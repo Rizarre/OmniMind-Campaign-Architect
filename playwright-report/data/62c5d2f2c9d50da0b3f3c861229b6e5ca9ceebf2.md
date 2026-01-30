@@ -1,0 +1,128 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - img "OmniMind Logo" [ref=e7]
+          - heading "OmniMind" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Co-Pilot Engine
+      - navigation [ref=e10]:
+        - link "Campaign Builder" [ref=e11] [cursor=pointer]:
+          - /url: /
+          - img [ref=e13]
+          - generic [ref=e21]: Campaign Builder
+        - link "Campaign Brain" [ref=e22] [cursor=pointer]:
+          - /url: /campaign-brief
+          - img [ref=e23]
+          - generic [ref=e25]: Campaign Brain
+        - link "Creative Testing" [ref=e26] [cursor=pointer]:
+          - /url: /creative-testing
+          - img [ref=e27]
+          - generic [ref=e30]: Creative Testing
+        - link "Targeting Tactics" [ref=e31] [cursor=pointer]:
+          - /url: /targeting-tactics
+          - img [ref=e32]
+          - generic [ref=e36]: Targeting Tactics
+        - link "Audience Segments" [ref=e37] [cursor=pointer]:
+          - /url: /audience-segments
+          - img [ref=e38]
+          - generic [ref=e43]: Audience Segments
+        - link "Ad Formats" [ref=e44] [cursor=pointer]:
+          - /url: /ad-formats
+          - img [ref=e45]
+          - generic [ref=e47]: Ad Formats
+        - link "Budget Studio" [ref=e48] [cursor=pointer]:
+          - /url: /budget-studio
+          - img [ref=e49]
+          - generic [ref=e51]: Budget Studio
+        - link "Insights" [ref=e52] [cursor=pointer]:
+          - /url: /insights
+          - img [ref=e53]
+          - generic [ref=e56]: Insights
+        - link "Export Center" [ref=e57] [cursor=pointer]:
+          - /url: /export-center
+          - img [ref=e58]
+          - generic [ref=e61]: Export Center
+      - generic [ref=e62]:
+        - button "Presentation" [ref=e63]:
+          - generic [ref=e64]:
+            - img [ref=e65]
+            - generic [ref=e67]: Presentation
+        - generic [ref=e70]: System Online
+    - main [ref=e72]:
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - img "OmniMind Logo" [ref=e78]
+            - heading "OmniMind Campaign Architect" [level=1] [ref=e79]
+          - paragraph [ref=e80]: The industry's most advanced programmatic blueprint engine. Orchestrate precision-targeted campaigns with AI-driven strategy.
+        - generic [ref=e81]:
+          - generic [ref=e83]:
+            - generic [ref=e85]:
+              - generic [ref=e87]:
+                - img [ref=e89]
+                - generic [ref=e92]:
+                  - heading "Campaign Builder" [level=2] [ref=e93]
+                  - paragraph [ref=e94]: Describe your marketing objective below
+              - textbox "e.g., Launch a fitness app targeting millennials with $50,000 budget for 30 days..." [ref=e96]: Launch new fitness app targeting millennials with $50,000 budget for 30 days
+              - button "Get AI Suggestions for Your Campaign" [ref=e97]:
+                - img [ref=e98]
+                - generic [ref=e101]: Get AI Suggestions for Your Campaign
+              - generic [ref=e102]:
+                - paragraph [ref=e103]: Quick Templates
+                - generic [ref=e104]:
+                  - button "Launch new fitness app for millennials" [ref=e105]
+                  - button "Mother's Day sales for local florist" [ref=e106]
+                  - button "Luxury travel packages for 2025" [ref=e107]
+                  - button "B2B SaaS product launch in Fintech" [ref=e108]
+              - button "Generate Media Plan" [ref=e111]:
+                - img
+                - text: Generate Media Plan
+            - generic [ref=e112]:
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - img [ref=e117]
+                  - generic [ref=e119]: Total Investment
+                - generic [ref=e120]: $50,000
+                - slider [ref=e125]
+                - generic [ref=e126]:
+                  - generic [ref=e127]: $1,000
+                  - generic [ref=e128]: $100,000
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - img [ref=e133]
+                  - generic [ref=e135]: Campaign Duration
+                - generic [ref=e136]: 30 days
+                - slider [ref=e141]
+                - generic [ref=e142]:
+                  - generic [ref=e143]: 7 days
+                  - generic [ref=e144]: 120 days
+            - generic [ref=e145]:
+              - generic [ref=e146]:
+                - generic [ref=e147]: Est. Reach
+                - generic [ref=e148]: 1,600,000
+                - generic [ref=e149]: unique users
+              - generic [ref=e150]:
+                - generic [ref=e151]: Impressions
+                - generic [ref=e152]: 6,250,000
+                - generic [ref=e153]: ad views
+              - generic [ref=e154]:
+                - generic [ref=e155]: Est. Clicks
+                - generic [ref=e156]: 14,285
+                - generic [ref=e157]: interactions
+          - generic [ref=e160]:
+            - img [ref=e164]
+            - generic [ref=e168]:
+              - heading "Media Blueprint Shell" [level=3] [ref=e169]
+              - paragraph [ref=e170]: Your architectural plan will materialize here once the AI has analyzed your brief.
+            - generic [ref=e176]: System Warmup Ready
+    - button [ref=e178]:
+      - generic [ref=e180]:
+        - img
+  - button "Open Next.js Dev Tools" [ref=e187] [cursor=pointer]:
+    - img [ref=e188]
+  - alert [ref=e191]
+```

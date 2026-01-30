@@ -18,6 +18,7 @@ interface AppState {
     isRefining: boolean;
     error: string | null;
     insights: InsightData | null;
+    isPresentationMode: boolean;
 
     // Actions
     setCurrentPlan: (plan: MediaPlan) => void;
@@ -26,6 +27,7 @@ interface AppState {
     setIsRefining: (loading: boolean) => void;
     setError: (error: string | null) => void;
     setPrompt: (prompt: string) => void;
+    togglePresentationMode: () => void;
 
     // Scenario actions
     addScenario: (scenario: Scenario) => void;
@@ -50,12 +52,14 @@ export const useAppStore = create<AppState>()(
             isRefining: false,
             error: null,
             insights: null,
+            isPresentationMode: false,
 
             setCurrentPlan: (plan) => set({ currentPlan: plan }),
             setCampaignInput: (input) => set({ campaignInput: input }),
             setIsGenerating: (loading) => set({ isGenerating: loading }),
             setIsRefining: (loading) => set({ isRefining: loading }),
             setError: (error) => set({ error }),
+            togglePresentationMode: () => set((state) => ({ isPresentationMode: !state.isPresentationMode })),
             setPrompt: (prompt) => set((state) => ({
                 campaignInput: state.campaignInput
                     ? { ...state.campaignInput, prompt }
@@ -95,17 +99,12 @@ export const useAppStore = create<AppState>()(
                 newFormats['Awareness'] = Array.from(awarenessFormats);
 
                 let newTactics = [...state.currentPlan.tactics];
-                const hasGeoFencing = newTactics.find(t => (typeof t === 'string' ? t : t.name) === 'Geo-fencing');
+                const hasGeoFencing = newTactics.includes('Geo-fencing');
 
                 if (newBudget >= 20000 && !hasGeoFencing) {
-                    newTactics.push({
-                        name: 'Geo-fencing',
-                        description: 'Real-time location targeting to reach users near physical locations.',
-                        metric_label: 'Visit Rate',
-                        metric_value: 12
-                    } as any);
+                    newTactics.push('Geo-fencing');
                 } else if (newBudget < 20000 && hasGeoFencing) {
-                    newTactics = newTactics.filter(t => (typeof t === 'string' ? t : t.name) !== 'Geo-fencing');
+                    newTactics = newTactics.filter(t => t !== 'Geo-fencing');
                 }
 
                 const updatedFunnel = state.currentPlan.funnel.map(stage => ({
@@ -179,19 +178,14 @@ export const useAppStore = create<AppState>()(
                 }
 
                 let newTactics = [...state.currentPlan.tactics];
-                const hasFlighting = newTactics.find(t => (typeof t === 'string' ? t : t.name) === 'Flighting Strategy');
+                const hasFlighting = newTactics.includes('Flighting Strategy');
 
                 if (newDuration > 45) {
                     if (!hasFlighting) {
-                        newTactics.push({
-                            name: 'Flighting Strategy',
-                            description: 'Strategic timing of ad delivery to maximize impact during peak periods.',
-                            metric_label: 'Efficiency',
-                            metric_value: 20
-                        } as any);
+                        newTactics.push('Flighting Strategy');
                     }
                 } else {
-                    newTactics = newTactics.filter(t => (typeof t === 'string' ? t : t.name) !== 'Flighting Strategy');
+                    newTactics = newTactics.filter(t => t !== 'Flighting Strategy');
                 }
 
                 const newFormats = { ...state.currentPlan.formats };
@@ -258,7 +252,7 @@ export const useAppStore = create<AppState>()(
         }),
         {
             name: 'omni-mind-storage',
-            storage: createJSONStorage(() => localStorage),
+            storage: createJSONStorage(() => sessionStorage),
         }
     )
 );

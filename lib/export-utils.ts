@@ -20,7 +20,18 @@ export function exportAsMarkdown(plan: MediaPlan, campaignName: string = 'Campai
     let markdown = `# ${campaignName} - Media Plan\n\n`;
 
     markdown += `## Campaign Overview\n\n`;
-    markdown += `**Total Budget:** $${plan.totalBudget?.toLocaleString() || 'N/A'}\n\n`;
+    markdown += `**Total Budget:** $${plan.totalBudget?.toLocaleString() || 'N/A'}\n`;
+    if (plan.flightDate) markdown += `**Flight Dates:** ${plan.flightDate}\n`;
+    if (plan.geographicScope) markdown += `**Geography:** ${plan.geographicScope}\n`;
+    if (plan.frequency) markdown += `**Frequency:** ${plan.frequency}\n`;
+    markdown += `\n`;
+
+    if (plan.constraints) {
+        markdown += `### Constraints & Preferences\n`;
+        if (plan.constraints.financial) markdown += `- **Financial:** ${plan.constraints.financial}\n`;
+        if (plan.constraints.channels?.length) markdown += `- **Channels:** ${plan.constraints.channels.join(', ')}\n`;
+        markdown += `\n`;
+    }
 
     markdown += `## Funnel Strategy\n\n`;
     plan.funnel.forEach(stage => {
@@ -46,8 +57,8 @@ export function exportAsMarkdown(plan: MediaPlan, campaignName: string = 'Campai
 
     markdown += `\n## Targeting Tactics\n\n`;
     plan.tactics.forEach(tactic => {
-        const tacticName = typeof tactic === 'string' ? tactic : tactic.name;
-        markdown += `- ${tacticName}\n`;
+        const tacticLabel = typeof tactic === 'string' ? tactic : (tactic as any).name;
+        markdown += `- ${tacticLabel}\n`;
     });
 
     markdown += `\n## Budget Allocation\n\n`;
@@ -83,8 +94,31 @@ export function exportAsPDF(plan: MediaPlan, campaignName: string = 'Campaign') 
 
     // Budget
     doc.setFontSize(12);
+    // Budget & Overview
+    doc.setFontSize(12);
     doc.text(`Total Budget: $${plan.totalBudget?.toLocaleString() || 'N/A'}`, 20, yPos);
-    yPos += 15;
+    yPos += 7;
+
+    if (plan.flightDate) {
+        doc.text(`Flight Dates: ${plan.flightDate}`, 20, yPos);
+        yPos += 7;
+    }
+    if (plan.geographicScope) {
+        doc.text(`Geography: ${plan.geographicScope}`, 20, yPos);
+        yPos += 7;
+    }
+    if (plan.constraints) {
+        yPos += 3;
+        doc.setFontSize(10);
+        doc.setTextColor(100);
+        if (plan.constraints.channels?.length) {
+            doc.text(`Channels: ${plan.constraints.channels.join(', ')}`, 20, yPos);
+            yPos += 5;
+        }
+        doc.setTextColor(0);
+        doc.setFontSize(12);
+    }
+    yPos += 8;
 
     // Funnel Strategy
     doc.setFontSize(16);
@@ -147,8 +181,8 @@ export function exportAsPDF(plan: MediaPlan, campaignName: string = 'Campaign') 
 
     doc.setFontSize(11);
     plan.tactics.forEach(tactic => {
-        const tacticName = typeof tactic === 'string' ? tactic : tactic.name;
-        doc.text(`• ${tacticName}`, 20, yPos);
+        const tacticLabel = typeof tactic === 'string' ? tactic : (tactic as any).name;
+        doc.text(`• ${tacticLabel}`, 20, yPos);
         yPos += 7;
     });
 

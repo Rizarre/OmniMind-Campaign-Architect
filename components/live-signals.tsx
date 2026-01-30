@@ -28,7 +28,7 @@ export function LiveSignals() {
     if (!campaignInput || isGenerating) return null;
 
     return (
-        <Card className="p-6 bg-[#0F111A]/60 border-slate-800/50 backdrop-blur-xl rounded-[2rem] overflow-hidden relative group">
+        <Card className="p-8 border-white/5 backdrop-blur-xl rounded-[2.5rem] overflow-hidden relative group">
             <div className="absolute top-0 right-0 p-4">
                 <button
                     onClick={handleRefresh}
@@ -44,13 +44,13 @@ export function LiveSignals() {
                     <Activity className="h-5 w-5 text-blue-400" />
                     <div className="absolute inset-0 bg-blue-400/20 blur-lg animate-pulse" />
                 </div>
-                <h3 className="text-sm font-bold text-white uppercase tracking-[0.2em]">Real-Time Market Signals</h3>
+                <h3 className="text-xs font-bold text-white uppercase tracking-[0.2em]">Real-Time Market Signals</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Local Context */}
                 <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                    <div className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
                         <MapPin className="h-3 w-3" />
                         Local Events
                     </div>
@@ -61,7 +61,7 @@ export function LiveSignals() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: i * 0.1 }}
                                 key={i}
-                                className="text-xs text-slate-300 bg-slate-900/50 p-2.5 rounded-xl border border-slate-800/50"
+                                className="text-sm text-slate-300 bg-white/5 p-2.5 rounded-xl border border-white/5"
                             >
                                 {event}
                             </motion.div>
@@ -71,7 +71,7 @@ export function LiveSignals() {
 
                 {/* Search Momentum */}
                 <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                    <div className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
                         <Search className="h-3 w-3" />
                         Search Trends
                     </div>
@@ -93,7 +93,7 @@ export function LiveSignals() {
 
                 {/* Financial Indices */}
                 <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                    <div className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
                         <TrendingUp className="h-3 w-3" />
                         Live CPM Estimates
                     </div>
@@ -104,9 +104,9 @@ export function LiveSignals() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     key={type}
-                                    className="bg-[#0F111A] p-3 rounded-xl border border-slate-800/50"
+                                    className="bg-black/40 p-3 rounded-xl border border-white/5"
                                 >
-                                    <div className="text-[9px] text-slate-600 uppercase font-black mb-1">{type}</div>
+                                    <div className="text-xs text-slate-400 uppercase font-black mb-1">{type}</div>
                                     <div className="text-sm font-bold text-green-400 font-mono">
                                         ${value.toFixed(2)}
                                     </div>
@@ -117,10 +117,10 @@ export function LiveSignals() {
                 </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-slate-800/50 flex justify-between items-center text-[10px] text-slate-600 font-medium italic">
+            <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs text-slate-300 font-semibold">
                 <span>* Data synchronized with global DSP index & local event APIs</span>
-                <span className="flex items-center gap-1">
-                    <div className="w-1 h-1 rounded-full bg-green-500 animate-ping" />
+                <span className="flex items-center gap-1 font-bold">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-ping" />
                     Live Connection
                 </span>
             </div>
